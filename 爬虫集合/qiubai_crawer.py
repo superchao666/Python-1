@@ -11,7 +11,8 @@ def download_page(url):
 def get_content(html, page):
     output = """第{}页 作者：{} 性别：{} 年龄：{} 点赞：{} 评论：{}\n{}\n------------\n"""
     soup = BeautifulSoup(html, 'html.parser')
-    con = soup.find(id='content-left')
+    # con = soup.find(id='content-left')
+    con = soup.find(id='content')
     con_list = con.find_all('div', class_="article")
     for i in con_list:
         author = i.find('h2').string  # 获取作者名字
@@ -37,8 +38,9 @@ def get_content(html, page):
 
 
 def save_txt(*args):
+    print(args)
     for i in args:
-        with open('qiubai.txt', 'a', encoding='utf-8') as f:
+        with open('F://qiubai.txt', 'a', encoding='utf-8') as f:
             f.write(i)
 
 
